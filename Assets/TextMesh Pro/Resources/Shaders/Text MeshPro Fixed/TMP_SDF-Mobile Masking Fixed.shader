@@ -199,10 +199,10 @@ SubShader {
 		fixed4 PixShader(pixel_t input) : SV_Target
 		{
 			half d = tex2D(_MainTex, input.texcoord0.xy).a * input.param.x;
-			half4 c = input.faceColor * saturate(d - input.param.w);
+			half4 c = 0;
 
 		#ifdef OUTLINE_ON
-			c = lerp(input.outlineColor, input.faceColor, saturate(d - input.param.z));
+			c = input.outlineColor;
 			c *= saturate(d - input.param.y);
 		#endif
 
